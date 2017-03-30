@@ -1,3 +1,11 @@
+//
+//  rm_threadpool.c
+//  rm_threadpool
+//
+//  Created by Kevin on 2017/3/29.
+//  Copyright © 2017年 Kevin. All rights reserved.
+//
+
 #include "rm_threadpool.h"
 #include <stdio.h>
 #include <string.h>
