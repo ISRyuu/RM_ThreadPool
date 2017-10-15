@@ -125,10 +125,7 @@ RM_create_tpool(size_t threads)
       perror("cannot malloc");
       goto clean;
     }
-    /* null represents end of threads, also, set 'next' to null and append to threads
-     * (i.e: *thread = new)as soon as allocated the memory guarantees the clean process
-     * correctly frees all memory when pthread_create fail.
-     */
+    
     new->next = NULL;
     *thread   = new;
     thread    = &new->next;
@@ -168,7 +165,7 @@ RM_task_enqueue(RMThreadPool tpool, Runner runner, void* arg, size_t arg_size, u
 
   is_max_heap_insert(tpool->tqueue->pqueue, MAX(priority, 1), (void*)new);
   
-  /* new task, notify an idle(if any) thread */
+  /* new task, notify (at least)an idle(if any) thread */
   pthread_cond_signal(cond);
   pthread_mutex_unlock(mutex);
 
